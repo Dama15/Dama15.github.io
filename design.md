@@ -1,6 +1,6 @@
 ---
 version: alpha
-name: 8-Bit Orbit
+name: DaMa Games
 description: A retro-futuristic pixel-art presentation system that fuses 16-bit arcade nostalgia with editorial discipline. Display type runs in Tektur (a chunky geometric display face built on pixel-grid logic) paired with Chakra Petch for body and Space Mono for code-flavored labels and tabular data. The palette pivots on a deep cosmic navy (`#0F1B3D` / `#0A0E27`) lit by three saturated neons — cyan, hot pink, and a high-key yellow — with a soft lavender pastel for warm reprieves. Depth is built from stacked hard offset shadows in 4px increments (the pixel unit), CRT scanlines, atmospheric grain, vignettes, and animated starfields. The effect sits between an arcade cabinet and a Tron-era boardroom — unmistakably digital, intentionally lo-fi, and engineered to feel as if it just booted up.
 
 colors:
@@ -229,7 +229,7 @@ components:
 
 ## Overview
 
-8-Bit Orbit is a **retro-futuristic pixel-art presentation system**. Its foundational premise is the **4-pixel unit**: every shadow offset, every border, every corner bracket, every label height resolves to a multiple of 4px. Layouts feel as if they were rasterized on an old CRT and dragged into HTML — and atmospheric overlays (scanlines, grain, vignette glow, animated starfields) reinforce the illusion on every surface.
+DaMa Games is a **retro-futuristic pixel-art presentation system**. Its foundational premise is the **4-pixel unit**: every shadow offset, every border, every corner bracket, every label height resolves to a multiple of 4px. Layouts feel as if they were rasterized on an old CRT and dragged into HTML — and atmospheric overlays (scanlines, grain, vignette glow, animated starfields) reinforce the illusion on every surface.
 
 The type stack is three faces working in concert. **Tektur** is the display face — a chunky, geometric, semi-pixelated grotesque that carries headlines, hero text, stat numerals, and any text that needs to feel like it was drawn on the pixel grid. **Chakra Petch** is the body face — a humanist sans with subtle geometric cuts that reads cleanly at small sizes and avoids fighting Tektur for attention. **Space Mono** is the system face — used exclusively for labels, captions, badges, chart values, dates, and counters. The mono treatment + wide tracking on these elements makes them feel like HUD readouts, not editorial captions.
 
@@ -461,7 +461,7 @@ Borders are always solid, always navy or neon, never dashed except for the timel
 
 ## Responsive Behavior
 
-8-Bit Orbit is a **viewport-fluid system** built around `vw/vh`-based sizing and CSS `clamp()` ranges. There are no hard breakpoints for the deck itself — every font size, padding value, and gap interpolates between a minimum and maximum based on viewport width.
+DaMa Games is a **viewport-fluid system** built around `vw/vh`-based sizing and CSS `clamp()` ranges. There are no hard breakpoints for the deck itself — every font size, padding value, and gap interpolates between a minimum and maximum based on viewport width.
 
 ### Scaling Behavior
 - Hero text scales 48px → 128px on viewport width.
