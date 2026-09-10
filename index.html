@@ -21,6 +21,18 @@
       --font-mono: 'Space Mono', monospace;
     }
 
+    @font-face {
+      font-family: 'Hello Notie';
+      src: url('Assets/Hello-Notie.otf') format('opentype');
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Schoolbell';
+      src: url('Assets/Schoolbell-Regular.ttf') format('truetype');
+      font-display: swap;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html, body {
@@ -28,6 +40,10 @@
       font-family: var(--font-body);
       color: var(--dark-void);
       background: var(--dark-void);
+    }
+
+    html {
+      scroll-snap-type: y mandatory;
     }
 
     /* Deck now scrolls normally instead of snapping/transforming */
@@ -53,6 +69,11 @@
       scroll-margin-top: 0;
     }
 
+    .slide:nth-child(1),
+    .slide:nth-child(2) {
+      scroll-snap-align: start;
+    }
+
     .slide:not(:first-child) {
       min-height: auto;
       justify-content: flex-start;
@@ -60,10 +81,6 @@
 
     .slide:nth-child(2) {
       padding-bottom: 0;
-    }
-
-    .slide:nth-child(3) {
-      padding-top: 0;
     }
 
     /* === GLOBAL ATMOSPHERIC OVERLAYS === */
@@ -108,15 +125,56 @@
       background-image:
         linear-gradient(rgba(94, 220, 244, 0.07) 1px, transparent 1px),
         linear-gradient(90deg, rgba(94, 220, 244, 0.07) 1px, transparent 1px);
-      background-size: 40px 40px;
+      background-size: 40px 40px, 40px 40px;
+      background-repeat: repeat, repeat;
     }
 
     .bg-grid-pink {
-      background-color: var(--neon-pink);
-      background-image:
-        linear-gradient(rgba(15, 27, 61, 0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(15, 27, 61, 0.06) 1px, transparent 1px);
-      background-size: 40px 40px;
+      background-color: #0A0C1D;
+      background-image: none;
+    }
+
+    .grid-fade-line {
+      position: absolute;
+      top: 90%;
+      left: 0;
+      width: 100%;
+      height: 10%;
+      background: linear-gradient(
+        to bottom,
+        rgba(10, 13, 33, 0) 0%,
+        #0A0C1D 100%
+      );
+      pointer-events: none;
+      z-index: 52;
+    }
+
+    .slide[data-slide="2"] {
+      padding-top: clamp(3rem, 10vh, 7rem);
+    }
+
+    .slide[data-slide="1"] {
+      min-height: 50vh;
+      height: 50vh;
+    }
+
+    .slide[data-slide="2"] {
+      min-height: 100vh;
+    }
+
+    .page-two-logo {
+      position: absolute;
+      top: clamp(1rem, 3vw, 2.5rem);
+      left: clamp(1rem, 3vw, 2.5rem);
+      z-index: 20;
+      width: clamp(88px, 14vw, 160px);
+      height: auto;
+      transform: translateX(calc(-100% - 3rem));
+      transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .slide[data-slide="2"].is-visible .page-two-logo {
+      transform: translateX(0);
     }
 
     .bg-grid-cyan {
@@ -230,6 +288,14 @@
         4px 4px 0 var(--neon-yellow),
         8px 8px 0 var(--deep-navy);
       letter-spacing: 0.04em;
+    }
+
+    .hero-logo {
+      display: block;
+      width: min(48vw, 460px);
+      max-height: 30vh;
+      object-fit: contain;
+      margin: 0 auto;
     }
 
     .pixel-corners {
@@ -406,6 +472,18 @@
       color: var(--neon-yellow);
     }
 
+    .from-scratch-title {
+      font-family: 'Hello Notie', var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem) !important;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-tagline,
+    [data-slide="2"] p {
+      font-family: 'Schoolbell', var(--font-body);
+    }
+
     /* === SLIDE 2: SPLIT INTRO === */
     .split-layout {
       display: grid;
@@ -413,7 +491,7 @@
       gap: 4vw;
       align-items: center;
       width: 100%;
-      max-width: 1100px;
+      max-width: 1200px;
     }
 
     @media (max-width: 768px) {
@@ -434,7 +512,7 @@
 
     .pixel-image-zone {
       width: 100%;
-      max-width: 380px;
+      max-width: 640px;
       margin: 0;
       position: relative;
       overflow: hidden;
@@ -489,13 +567,49 @@
     }
 
     /* === SLIDE 3: IMAGE SCROLLER === */
+    .image-carousel {
+      display: flex;
+      align-items: center;
+      gap: clamp(8px, 1.5vw, 18px);
+      width: 100%;
+    }
+
+    .carousel-control {
+      flex: 0 0 42px;
+      width: 42px;
+      height: 56px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 3px solid var(--deep-navy);
+      background: var(--neon-yellow);
+      color: var(--deep-navy);
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 900;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--deep-navy);
+      transition: transform 0.1s, box-shadow 0.1s, opacity 0.1s;
+    }
+
+    .carousel-control:hover:not(:disabled) {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 var(--deep-navy);
+    }
+
+    .carousel-control:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
     .image-grid {
       display: flex;
       align-items: center;
       gap: clamp(10px, 2.5vw, 28px);
-      width: calc(100% + 4vw);
+      flex: 1 1 auto;
+      width: auto;
       max-width: none;
-      margin-left: -2vw;
       padding: 0 4px 24px;
       min-height: 320px;
       overflow-x: auto;
@@ -529,6 +643,37 @@
       transition: transform 0.1s linear;
     }
 
+    .steam-widget {
+      display: block;
+      width: 646px;
+      max-width: 100%;
+      height: 190px;
+      margin: 2rem auto 0;
+      border: 0;
+    }
+
+    .wishlist-message {
+      margin-top: 1rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-family: 'Schoolbell', var(--font-body);
+      font-size: clamp(1.1rem, 2vw, 1.45rem);
+      text-align: center;
+    }
+
+    .press-kit-link {
+      display: inline-block;
+      margin-top: 0.4rem;
+      color: #fff;
+      font-family: 'Hello Notie', var(--font-display);
+      font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+      text-decoration: underline;
+      text-underline-offset: 0.18em;
+    }
+
+    .press-kit-link:hover {
+      color: var(--neon-cyan);
+    }
+
     .image-card {
       flex: 0 0 calc((100% - 2 * clamp(10px, 2.5vw, 28px)) / 3);
       min-width: 0;
@@ -554,12 +699,19 @@
 
     @media (max-width: 600px) {
       .image-grid { min-height: 210px; }
+      .carousel-control {
+        flex-basis: 34px;
+        width: 34px;
+        height: 46px;
+        font-size: 1.15rem;
+      }
     }
 
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .starfield .star, .pixel-particles .p { animation: none; }
+      .starfield .star, .pixel-particles .p { animation:  none; }
+      .page-two-logo { transition: none; }
     }
   </style>
 </head>
@@ -573,56 +725,73 @@
     <section class="slide bg-grid scanlines grain crt-glow" data-slide="1">
       <div class="starfield" id="starfield1"></div>
       <div class="pixel-particles" id="particles1"></div>
+      <div class="grid-fade-line" aria-hidden="true"></div>
       <div class="slide-content" style="z-index:10;">
-        <h1 class="pixel-hero-text" style="text-align:center;">8-BIT<br>ORBIT</h1>
+        <img class="hero-logo" src="Assets/Logo_Cyan_4096.png" alt="8-Bit Orbit logo">
         <p class="hero-tagline">Independent Game Developer, making cool games.</p>
       </div>
     </section>
 
     <!-- ========== SLIDE 2: SPLIT INTRO ========== -->
-    <section class="slide bg-grid-pink scanlines grain" data-slide="2">
+    <section class="slide bg-grid-pink" data-slide="2">
+      <img class="page-two-logo" src="Assets/Logo_Cyan_512.png" alt="8-Bit Orbit logo">
       <div class="slide-content">
         <div class="split-layout">
           <div class="pixel-image-zone pixel-corners yellow-corners">
             <img src="Assets/header.jpg" alt="From Scratch game artwork">
           </div>
           <div style="max-width: 460px;">
-            <h2 style="color: var(--deep-navy); margin-bottom: 1.2rem; font-size: clamp(1.6rem, 3vw, 2.4rem);">From Scratch</h2>
-            <p style="color: rgba(15,27,61,0.75); margin-bottom: 1rem;">
+            <h2 class="from-scratch-title" style="color: #fff; margin-bottom: 1.2rem; font-size: clamp(2rem, 3vw, 2.4rem);">From Scratch</h2>
+            <p style="color: rgba(255,255,255,0.7); margin-bottom: 1rem;">
               From Scratch is a casual sandbox game where you can cut, fold, and paste cardboard to create any props you like. Choose from pre-made templates or design your own and start crafting!
             </p>
             
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- ========== SLIDE 3: IMAGE GRID ========== -->
-    <section class="slide bg-grid-pink scanlines grain" data-slide="3">
-      <div class="slide-content">
-        <div class="image-grid" aria-label="Scrollable image gallery">
-          <div class="image-card">
-            <img src="Assets/1.jpg" alt="">
+        <div class="image-carousel">
+          <button class="carousel-control" type="button" data-carousel-direction="-1" aria-label="Previous images">&#8249;</button>
+          <div class="image-grid" aria-label="Scrollable image gallery">
+            <div class="image-card">
+              <img src="Assets/1.png" alt="From Scratch gameplay image 1">
+            </div>
+            <div class="image-card">
+              <img src="Assets/2.png" alt="From Scratch gameplay image 2">
+            </div>
+            <div class="image-card">
+              <img src="Assets/3.png" alt="From Scratch gameplay image 3">
+            </div>
+            <div class="image-card">
+              <img src="Assets/4.png" alt="From Scratch gameplay image 4">
+            </div>
+            <div class="image-card">
+              <img src="Assets/5.png" alt="From Scratch gameplay image 5">
+            </div>
+            <div class="image-card">
+              <img src="Assets/6.png" alt="From Scratch gameplay image 6">
+            </div>
+            <div class="image-card">
+              <img src="Assets/7.png" alt="From Scratch gameplay image 7">
+            </div>
+            <div class="image-card">
+              <img src="Assets/8.png" alt="From Scratch gameplay image 8">
+            </div>
+            <div class="image-card">
+              <img src="Assets/9.png" alt="From Scratch gameplay image 9">
+            </div>
+            <div class="image-card">
+              <img src="Assets/10.png" alt="From Scratch gameplay image 10">
+            </div>
           </div>
-          <div class="image-card">
-            <img src="Assets/2.jpg" alt="">
-          </div>
-          <div class="image-card">
-            <img src="Assets/3.jpg" alt="">
-          </div>
-          <div class="image-card">
-            <img src="Assets/4.jpg" alt="">
-          </div>
-          <div class="image-card">
-            <img src="Assets/5.jpg" alt="">
-          </div>
-          <div class="image-card">
-            <img src="Assets/6.jpg" alt="">
-          </div>
+          <button class="carousel-control" type="button" data-carousel-direction="1" aria-label="Next images">&#8250;</button>
         </div>
-        <div class="image-scrollbar" aria-hidden="true">
-          <span class="image-scrollbar-thumb"></span>
-        </div>
+        <iframe
+          class="steam-widget"
+          src="https://store.steampowered.com/widget/4573360/?utm_source=homepage&utm_campaign=mycampaign"
+          title="From Scratch on Steam"
+          loading="lazy">
+        </iframe>
+        <p class="wishlist-message">Demo out soon. Wishlist now to be notified!</p>
+        <a class="press-kit-link" href="FromScratch-presskit.html">Press Kit</a>
       </div>
     </section>
 
@@ -668,21 +837,52 @@
 
   generateParticles('particles1', ['var(--neon-cyan)', 'var(--neon-pink)', 'var(--neon-yellow)'], 16);
 
-  // ===== IMAGE SCROLL INDICATOR =====
-  const imageGrid = document.querySelector('.image-grid');
-  const scrollbarThumb = document.querySelector('.image-scrollbar-thumb');
-
-  function updateImageScrollbar() {
-    if (!imageGrid || !scrollbarThumb) return;
-    const scrollableWidth = imageGrid.scrollWidth - imageGrid.clientWidth;
-    const progress = scrollableWidth > 0 ? imageGrid.scrollLeft / scrollableWidth : 0;
-    scrollbarThumb.style.transform = `translateX(${progress * 200}%)`;
+  const secondSlide = document.querySelector('[data-slide="2"]');
+  function updateSecondSlideLogo() {
+    if (!secondSlide) return;
+    const slideTop = secondSlide.getBoundingClientRect().top;
+    const slideIsSnapped = slideTop <= 4 && secondSlide.getBoundingClientRect().bottom > 0;
+    secondSlide.classList.toggle('is-visible', slideIsSnapped);
   }
 
+  if (secondSlide) {
+    window.addEventListener('scroll', updateSecondSlideLogo, { passive: true });
+    updateSecondSlideLogo();
+  }
+
+  // ===== IMAGE SCROLL INDICATOR =====
+  const imageGrid = document.querySelector('.image-grid');
+  const carouselControls = document.querySelectorAll('.carousel-control');
+
+  function updateCarouselControls() {
+    if (!imageGrid || !carouselControls.length) return;
+    const maxScroll = imageGrid.scrollWidth - imageGrid.clientWidth;
+    carouselControls[0].disabled = imageGrid.scrollLeft <= 1;
+    carouselControls[1].disabled = imageGrid.scrollLeft >= maxScroll - 1;
+  }
+
+  function getImageStep() {
+    const firstCard = imageGrid?.querySelector('.image-card');
+    if (!firstCard) return 0;
+    const gap = parseFloat(getComputedStyle(imageGrid).gap) || 0;
+    return firstCard.getBoundingClientRect().width + gap;
+  }
+
+  carouselControls.forEach((control) => {
+    control.addEventListener('click', () => {
+      if (!imageGrid) return;
+      imageGrid.scrollBy({
+        left: Number(control.dataset.carouselDirection) * getImageStep(),
+        behavior: 'smooth'
+      });
+    });
+  });
+
   if (imageGrid) {
-    imageGrid.addEventListener('scroll', updateImageScrollbar, { passive: true });
-    window.addEventListener('resize', updateImageScrollbar);
-    updateImageScrollbar();
+    imageGrid.addEventListener('scroll', () => {
+      updateCarouselControls();
+    }, { passive: true });
+    updateCarouselControls();
   }
 
 })();

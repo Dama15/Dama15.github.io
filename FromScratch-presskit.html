@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From Scratch | Press Kit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&family=Tektur:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --neon-pink: #F0A6CA;
+      --neon-cyan: #5EDCF4;
+      --neon-yellow: #F4D03F;
+      --deep-navy: #0F1B3D;
+      --dark-void: #0A0E27;
+      --soft-lavender: #E2D5F2;
+      --pixel-size: 4px;
+      --font-display: 'Tektur', cursive;
+      --font-body: 'Chakra Petch', sans-serif;
+      --font-mono: 'Space Mono', monospace;
+    }
+
+    @font-face {
+      font-family: 'Schoolbell';
+      src: url('Assets/Schoolbell-Regular.ttf') format('truetype');
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Hello Notie';
+      src: url('Assets/Hello-Notie.otf') format('opentype');
+      font-display: swap;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      font-family: 'Schoolbell', var(--font-body);
+      color: var(--dark-void);
+      background: #0A0C1D;
+    }
+
+    .page {
+      width: 100%;
+      position: relative;
+    }
+
+    .grain::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.035;
+      pointer-events: none;
+      z-index: 49;
+    }
+
+    .bg-grid-pink {
+      background-color: #0A0C1D;
+      position: relative;
+      padding: clamp(3rem, 8vh, 6rem) 0 5rem;
+    }
+
+    /* === LOGO === */
+    .press-logo {
+      position: absolute;
+      top: clamp(1rem, 3vw, 2.5rem);
+      left: clamp(1rem, 3vw, 2.5rem);
+      z-index: 20;
+      width: clamp(88px, 14vw, 160px);
+      height: auto;
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1vw;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(4rem, 8vh, 7rem);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Schoolbell', var(--font-body);
+      font-weight: 700;
+      line-height: 1.15;
+    }
+
+    h2 { font-size: clamp(1.5rem, 3.5vw, 2.8rem); }
+
+    p, li {
+      font-family: var(--font-body);
+      font-size: clamp(0.9rem, 1.2vw, 1.15rem);
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    /* === PIXEL UI COMPONENTS === */
+    .pixel-corners { position: relative; }
+    .pixel-corners::before,
+    .pixel-corners::after {
+      content: "";
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border: 4px solid var(--neon-yellow);
+    }
+    .pixel-corners::before { top: -8px; left: -8px; border-right: none; border-bottom: none; }
+    .pixel-corners::after { bottom: -8px; right: -8px; border-left: none; border-top: none; }
+
+    .pixel-label {
+      font-family: 'Hello Notie', var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #fff;
+      background: transparent;
+      padding: 0;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-badge {
+      font-family: 'Schoolbell', var(--font-body);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border: 2px solid var(--neon-yellow);
+      color: var(--neon-yellow);
+      display: inline-block;
+    }
+
+    .hero-badges {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    /* === SECTION 1: SPLIT INTRO === */
+    .split-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4vw;
+      align-items: center;
+      width: 100%;
+      padding: 0 4vw;
+    }
+
+    @media (max-width: 768px) {
+      .split-layout { grid-template-columns: 1fr; }
+    }
+
+    .pixel-image-zone {
+      width: 100%;
+      max-width: 640px;
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pixel-image-zone img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .from-scratch-title {
+      color: #fff;
+      font-family: 'Hello Notie', var(--font-display);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      margin-bottom: 1.2rem;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+    }
+
+    .intro-desc {
+      color: rgba(255,255,255,0.7);
+      font-family: 'Schoolbell', var(--font-body);
+      font-size: clamp(1rem, 1.6vw, 1.3rem);
+      margin-bottom: 0.5rem;
+    }
+
+    /* === SECTION 2: SCREENSHOT GRID === */
+    .section-inner {
+      padding: 0 4vw;
+    }
+
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(12px, 2vw, 24px);
+    }
+
+    .screenshot-grid img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: auto;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 700px) {
+      .screenshot-grid { grid-template-columns: 1fr; }
+    }
+
+    /* === SECTION 3: TRAILER === */
+    .trailer-frame-wrap {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      box-shadow: none;
+    }
+
+    .trailer-frame-wrap iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: 0;
+    }
+
+    /* === SECTION 4: FEATURES === */
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(24px, 4vw, 48px);
+    }
+
+    @media (max-width: 900px) {
+      .features-grid { grid-template-columns: 1fr; }
+    }
+
+    .feature-block h3 {
+      color: var(--neon-cyan);
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      margin-bottom: 0.9rem;
+    }
+
+    .feature-block ul {
+      list-style: none;
+    }
+
+    .feature-block li {
+      color: rgba(255,255,255,0.75);
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 0.6rem;
+    }
+
+    .feature-block li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      background: var(--neon-yellow);
+    }
+
+    .features-overview {
+      color: rgba(255,255,255,0.85);
+      font-family: 'Schoolbell', var(--font-body);
+      font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+      max-width: 900px;
+      margin: 0 0 2.5rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <section class="bg-grid-pink grain">
+    <img class="press-logo" src="Assets/Logo_Cyan_512.png" alt="8-Bit Orbit logo">
+
+    <div class="page-content">
+
+      <!-- ========== SECTION 1: INTRO (no title) ========== -->
+      <div class="split-layout">
+        <div class="pixel-image-zone pixel-corners">
+          <img src="Assets/header.jpg" alt="From Scratch game artwork">
+        </div>
+        <div style="max-width: 460px;">
+          <h2 class="from-scratch-title">From Scratch</h2>
+          <p class="intro-desc">
+            From Scratch is a casual sandbox game where you can cut, fold, and paste cardboard to create any props you like. Choose from pre-made templates or design your own and start crafting!
+          </p>
+          <div class="hero-badges">
+            <span class="hero-badge">Casual</span>
+            <span class="hero-badge">Simulation</span>
+            <span class="hero-badge">Cosy</span>
+            <span class="hero-badge">Sandbox</span>
+            <span class="hero-badge">Crafting</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== SECTION 2: SCREENSHOTS ========== -->
+      <div class="section-inner">
+        <span class="pixel-label">Screenshots</span>
+        <div class="screenshot-grid">
+          <img src="Assets/1.png" alt="From Scratch gameplay image 1">
+          <img src="Assets/2.png" alt="From Scratch gameplay image 2">
+          <img src="Assets/3.png" alt="From Scratch gameplay image 3">
+          <img src="Assets/4.png" alt="From Scratch gameplay image 4">
+          <img src="Assets/5.png" alt="From Scratch gameplay image 5">
+          <img src="Assets/6.png" alt="From Scratch gameplay image 6">
+          <img src="Assets/7.png" alt="From Scratch gameplay image 7">
+          <img src="Assets/8.png" alt="From Scratch gameplay image 8">
+          <img src="Assets/9.png" alt="From Scratch gameplay image 9">
+          <img src="Assets/10.png" alt="From Scratch gameplay image 10">
+        </div>
+      </div>
+
+      <!-- ========== SECTION 3: TRAILER ========== -->
+      <div class="section-inner">
+        <span class="pixel-label">Trailer</span>
+        <div class="trailer-frame-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/s-jFH5e2EYM?start=129"
+            title="From Scratch Trailer"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+      <!-- ========== SECTION 4: FEATURES ========== -->
+      <div class="section-inner">
+        <span class="pixel-label">Features</span>
+        <p class="features-overview">
+          A cozy crafting simulator where you build custom cardboard props for local townspeople, bringing their stories to life one craft at a time.
+        </p>
+
+        <div class="features-grid">
+          <div class="feature-block">
+            <h3>Unique Selling Points</h3>
+            <ul>
+              <li>Creative Freedom — full creative control over each craft, from choosing templates to adding extra decorations</li>
+              <li>Custom Cutscenes — the end-of-order cutscene features the exact item the player made</li>
+            </ul>
+          </div>
+
+          <div class="feature-block">
+            <h3>Core Loop</h3>
+            <ul>
+              <li>Receive orders from NPCs, each with a short story told through photos and letters</li>
+              <li>Letters detail the requested craft before the crafting scene loads</li>
+              <li>Pick from a few order-related templates, then cut, fold, paste, and paint using tools like the box cutter and bone folder</li>
+              <li>Parcel and send the finished craft — the NPC replies with a thank-you note and photos of them using it</li>
+              <li>New orders can arrive mid-craft and queue up, so players choose what to work on next</li>
+            </ul>
+          </div>
+
+          <div class="feature-block">
+            <h3>Sandbox Mode</h3>
+            <ul>
+              <li>Skip the narrative and NPC orders entirely</li>
+              <li>Freely spawn any cardboard template or starter mesh to craft whatever you like</li>
+            </ul>
+          </div>
+
+          <div class="feature-block">
+            <h3>Cardboard Mesh System</h3>
+            <ul>
+              <li>Fully intuitive — no required order of operations</li>
+              <li>Spawn a template, then cut, crease, and paint in any sequence</li>
+              <li>Cut pieces remain fully functional cardboard meshes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+</body>
+</html>
