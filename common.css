@@ -488,15 +488,17 @@ html:has(.slide[data-slide='2'].is-visible) .social-links {
 
 .page .bg-grid-pink {
   position: relative;
-  padding: clamp(3rem, 8vh, 6rem) 0 5rem;
+  padding: 0;
 }
 
 .press-logo {
   position: fixed;
-  top: clamp(1rem, 3vw, 2.5rem);
-  left: clamp(1rem, 3vw, 2.5rem);
+  top: clamp(1rem, 3vw, 2rem);
+  left: clamp(1rem, 3vw, 2rem);
   z-index: 70;
-  width: clamp(88px, 14vw, 160px);
+  width: clamp(140px, 14vw, 180px);
+  padding: 10px;
+  background: #0A0C1D;
   height: auto;
 }
 
@@ -508,9 +510,11 @@ html:has(.slide[data-slide='2'].is-visible) .social-links {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
+  padding: 0.5rem 0.75rem;
+  background: #0A0C1D;
   color: var(--neon-cyan);
   font-family: 'Yuyu', var(--font-body);
-  font-size: 5rem;
+  font-size: 3rem;
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
@@ -519,6 +523,24 @@ html:has(.slide[data-slide='2'].is-visible) .social-links {
   width: 3.4rem;
   height: 3.4rem;
   object-fit: contain;
+}
+
+.press-hero {
+  width: 100vw;
+  height: max(220px, calc(100vw * 1240 / 3840 - 200px));
+  margin: 0 auto 4rem;
+  position: relative;
+  left: 50%;
+  overflow: hidden;
+  transform: translateX(-50%);
+}
+
+.press-hero img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .drive-link:hover {
@@ -817,7 +839,158 @@ html:has(.slide[data-slide='2'].is-visible) .social-links {
   }
 }
 
+@media (max-width: 1500px) {
+  .slide {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .slide-content,
+  .page-content {
+    min-width: 0;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .slide-content {
+    width: calc(100% - 500px);
+  }
+
+  .page-content {
+    width: calc(100% - 500px);
+  }
+
+  .slide[data-slide='1'] {
+    padding-top: calc(3vh + 2rem);
+  }
+
+  .slide[data-slide='2'] {
+    padding-top: calc(clamp(3rem, 10vh, 7rem) + 2rem);
+  }
+
+  .page .bg-grid-pink {
+    padding-top: 0;
+  }
+
+  .press-hero {
+    width: 100vw;
+    height: max(220px, calc(100vw * 1240 / 3840 - 200px));
+    margin-top: 0;
+  }
+
+  .page > .grain::before {
+    display: none;
+  }
+
+  .page .split-layout {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .page .section-inner {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .page .intro-layout,
+  .page .arts-section {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .page .intro-layout {
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 0.8fr);
+  }
+
+  .page h2:not(.pixel-label),
+  .page h3,
+  .page p,
+  .page li,
+  .page dt,
+  .page dd,
+  .page .hero-badge {
+    font-size: 2.25rem;
+  }
+
+  .page .pixel-label {
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+
+  .page .hero-badge {
+    padding: 6px 12px;
+  }
+
+  .drive-link {
+    font-size: 1.5rem;
+  }
+
+  .drive-link img {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .hero-logo {
+    width: min(40vw, 360px);
+  }
+
+  .slide[data-slide='2'] .pixel-image-zone,
+  .slide[data-slide='2'] .image-carousel,
+  .slide[data-slide='2'] .steam-widget,
+  .page .pixel-image-zone,
+  .page .screenshot-grid,
+  .page .trailer-frame-wrap,
+  .page .arts-gallery {
+    width: 94%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .slide[data-slide='2'] .image-card img,
+  .page .screenshot-grid img,
+  .page .arts-item img {
+    width: 94%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .from-scratch-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+
+  .slide[data-slide='2'] p,
+  .wishlist-message {
+    font-size: clamp(1.4rem, 2vw, 1.8rem);
+  }
+
+  .social-links {
+    margin-top: 6rem;
+  }
+
+  html:has(.slide[data-slide='2'].is-visible) .social-links {
+    position: static;
+  }
+
+  .social-links a {
+    font-size: 1.5rem;
+  }
+
+  .social-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
 @media (max-width: 700px) {
+  .page-content {
+    width: calc(100% - 32px);
+  }
+
+  .press-hero {
+    width: 100vw;
+    height: 220px;
+    margin-top: 0;
+  }
+
   .screenshot-grid {
     grid-template-columns: 1fr;
   }
