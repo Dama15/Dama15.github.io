@@ -42,7 +42,7 @@ body {
 
 /* Main site */
 html:has(.deck) {
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
 }
 
 .deck,
@@ -473,13 +473,6 @@ html:has(.deck) {
   object-fit: contain;
 }
 
-html:has(.slide[data-slide='2'].is-visible) .social-links {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
 /* Press kit */
 .page {
   width: 100%;
@@ -527,7 +520,7 @@ html:has(.slide[data-slide='2'].is-visible) .social-links {
 
 .press-hero {
   width: 100vw;
-  height: max(220px, calc(100vw * 1240 / 3840 - 200px));
+  height: min(20vh, max(220px, calc(100vw * 1240 / 3840 - 200px)));
   margin: 0 auto 4rem;
   position: relative;
   left: 50%;
@@ -621,6 +614,22 @@ html:has(.slide[data-slide='2'].is-visible) .social-links {
   border: 2px solid var(--neon-yellow);
   color: var(--neon-yellow);
   display: inline-block;
+}
+
+.release-meta {
+  padding: 0 4vw;
+}
+
+.release-meta h3 {
+  color: var(--neon-cyan);
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.release-meta p {
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 0.5rem;
 }
 
 .page .split-layout {
@@ -874,7 +883,7 @@ html:has(.slide[data-slide='2'].is-visible) .social-links {
 
   .press-hero {
     width: 100vw;
-    height: max(220px, calc(100vw * 1240 / 3840 - 200px));
+    height: min(20vh, max(220px, calc(100vw * 1240 / 3840 - 200px)));
     margin-top: 0;
   }
 
@@ -888,6 +897,11 @@ html:has(.slide[data-slide='2'].is-visible) .social-links {
   }
 
   .page .section-inner {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .page .release-meta {
     padding-right: 0;
     padding-left: 0;
   }
@@ -971,10 +985,6 @@ html:has(.slide[data-slide='2'].is-visible) .social-links {
     margin-top: 6rem;
   }
 
-  html:has(.slide[data-slide='2'].is-visible) .social-links {
-    position: static;
-  }
-
   .social-links a {
     font-size: 1.5rem;
   }
@@ -1000,7 +1010,7 @@ html:has(.slide[data-slide='2'].is-visible) .social-links {
 
   .press-hero {
     width: 100vw;
-    height: 220px;
+    height: 20vh;
     margin-top: 0;
   }
 
