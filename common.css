@@ -324,7 +324,7 @@ html:has(.deck) {
 .from-scratch-title {
   color: #fff;
   font-family: 'Hello Notie';
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0.04em;
   margin-bottom: 1.2rem;
   font-size: clamp(2.5rem, 5vw, 4rem);
@@ -430,7 +430,7 @@ html:has(.deck) {
   margin-top: 0.4rem;
   color: #fff;
   font-family: 'Hello Notie', var(--font-display);
-  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  font-size: clamp(1.75rem, 3vw, 2.4rem);
   text-decoration: underline;
   text-underline-offset: 0.18em;
 }
@@ -953,6 +953,11 @@ html:has(.slide[data-slide='2'].is-visible) .social-links {
     margin-left: auto;
   }
 
+  .slide[data-slide='2'] .image-carousel,
+  .slide[data-slide='2'] .image-card img {
+    width: 100%;
+  }
+
   .from-scratch-title {
     font-size: clamp(2rem, 4vw, 3rem);
   }
@@ -977,6 +982,14 @@ html:has(.slide[data-slide='2'].is-visible) .social-links {
   .social-icon {
     width: 2.75rem;
     height: 2.75rem;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 1500px) {
+  .slide[data-slide='2'] .image-carousel {
+    width: calc(100% + 8vw);
+    margin-right: -4vw;
+    margin-left: -4vw;
   }
 }
 
