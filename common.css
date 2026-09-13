@@ -38,6 +38,7 @@ body {
   font-family: var(--font-body);
   color: var(--dark-void);
   background: #0A0C1D;
+  cursor: auto;
 }
 
 /* Main site */
@@ -51,7 +52,7 @@ html:has(.deck) {
 }
 
 .deck {
-  cursor: crosshair;
+  cursor: auto;
 }
 
 .slide {
@@ -346,7 +347,7 @@ html:has(.deck) {
   padding: 0;
   border: 0;
   background: transparent;
-  cursor: pointer;
+  cursor: auto;
   transition: transform 0.1s, opacity 0.1s;
 }
 
@@ -423,6 +424,20 @@ html:has(.deck) {
   font-family: 'Yuyu', var(--font-body);
   font-size: clamp(1.62rem, 2.16vw, 2.07rem);
   text-align: center;
+}
+
+.homepage-trailer-wrap {
+  width: 100%;
+  max-width: 1100px;
+  aspect-ratio: 16 / 9;
+  margin: 2rem auto 0;
+}
+
+.homepage-trailer-wrap iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
 }
 
 .press-kit-link {
@@ -620,6 +635,11 @@ html:has(.deck) {
   padding: 0 4vw;
 }
 
+.hero-meta .release-meta {
+  padding: 0;
+  margin-top: 2rem;
+}
+
 .release-meta h3 {
   color: var(--neon-cyan);
   font-size: clamp(1.5rem, 2.4vw, 2rem);
@@ -660,7 +680,7 @@ html:has(.deck) {
   grid-column: 1;
   grid-row: 2;
   max-width: none !important;
-  margin-top: 1.5rem;
+  margin-top: 0.5rem;
 }
 
 .page .intro-layout > .hero-meta {
