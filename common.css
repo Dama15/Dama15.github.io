@@ -488,6 +488,23 @@ html:has(.deck) {
   object-fit: contain;
 }
 
+.credit-link {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+  position: relative;
+  top: -0.22rem;
+  filter: brightness(0) saturate(100%) invert(70%) sepia(20%) saturate(600%) hue-rotate(160deg) brightness(95%) contrast(110%);
+}
+
+.credit-link-icon {
+  display: block;
+  width: 1.8rem;
+  height: 1.8rem;
+  object-fit: contain;
+}
+
 /* Press kit */
 .page {
   width: 100%;
